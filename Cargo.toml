@@ -1,0 +1,18 @@
+[package]
+name = "rust_hand"
+version = "0.1.0"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[profile.release]
+panic = "abort"
+
+[profile.dev]
+panic = "abort"
+
+[dependencies]
+panic-halt = "0.2.0"
+
+[dependencies.arduino-hal]
+git ="https://github.com/Rahix/avr-hal"
+rev = "0fdbc49"
+features = ["arduino-uno"]

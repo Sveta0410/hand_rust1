@@ -1,0 +1,66 @@
+void setup() {
+    pinMode(9, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+  analogWrite(9, 0);
+  delay (20);
+  analogWrite(9, 70);
+  delay (20);
+  analogWrite(9, 50);
+  delay (20);
+  exit(0);
+}
+
+
+
+---
+#define UPDATE_TIME 20
+
+int servoPin = 5;
+
+void setup() {
+    pinMode(5, OUTPUT);
+    Serial.begin(9600);
+}
+
+void loop() {
+//  analogWrite(5, HIGH);
+//  delay (2000);
+//  analogWrite(5, LOW);
+//  delay (2000);
+
+  for(int i=0;i<180;i++){
+    analogWrite(servoPin,convertirAngleEnPWM(i));
+    delay(20);
+  }
+delay(200);
+  for(int i=180;i>=0;i--){
+    analogWrite(servoPin,convertirAngleEnPWM(i));
+    delay(20);
+  }
+delay(200);
+exit(0);
+}
+
+
+int convertirAngleEnPWM(int ang){
+  float a = 255.0/180.0;
+  return (a*ang);
+}
+--------
+#include <Servo.h>
+
+Servo myServo;
+
+void setup() {
+    myServo.attach(5);
+}
+
+void loop() {
+  myServo.write(0);
+  delay (2000);
+  myServo.write(90);
+  delay (2000);
+}
