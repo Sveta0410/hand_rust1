@@ -20,21 +20,26 @@ fn main() -> ! {
     loop {
         // val (angle)= 180;
         led.toggle();
-        for _i in 0..50{
-            let pulse_width = (180 * 11) + 500;
+        for i in 0..180{
+            let pulse_width = (i * 11) + 500;
             servo_pin.set_high();
             arduino_hal::delay_us(pulse_width);
             servo_pin.set_low();
-            arduino_hal::delay_us(20 - pulse_width / 1000);
+            arduino_hal::delay_ms(2);
         }
         // val (angle) = 0;
         arduino_hal::delay_ms(1000);
-        for _i in 0..50{
-            let pulse_width = 500;
+        for i in (0..180).rev(){
+            let pulse_width = (i * 11) + 500;
             servo_pin.set_high();
             arduino_hal::delay_us(pulse_width);
             servo_pin.set_low();
-            arduino_hal::delay_us(20 - pulse_width / 1000);
+            arduino_hal::delay_ms(2);
+            // let pulse_width = 200;
+            // servo_pin.set_high();
+            // arduino_hal::delay_us(pulse_width);
+            // servo_pin.set_low();
+            // arduino_hal::delay_us(20 - pulse_width / 1000);
         }
         arduino_hal::delay_ms(1000);
 
