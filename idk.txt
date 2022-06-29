@@ -1,3 +1,6 @@
+avrdude -p m328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:hand_rust1.elf
+----
+
 void setup() {
     pinMode(9, OUTPUT);
     Serial.begin(9600);
