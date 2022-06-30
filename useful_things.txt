@@ -1,0 +1,4 @@
+ -------- преобразование строки в вектор(изменяемый массив) ---------
+let st = "0 1";
+let chars : Vec<char> = st.chars().collect();
+println!("{:?}", chars);
