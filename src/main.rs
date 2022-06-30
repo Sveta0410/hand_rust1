@@ -22,9 +22,13 @@ fn main() -> ! {
 
     let mut val; //we'll delete it later
 
-    let input_all_str = "10100".to_string(); // input from python
-    let input_all = input_all_str.parse::<i32>().unwrap(); // from string to int
-
+    let mut input_all_str = "10100".to_string(); // input from python
+    let mut input_all = input_all_str.parse::<i32>().unwrap(); // from string to int
+    let mut val_0 = input_all/10000; //for example thumb
+    let mut val_1 = (input_all/1000)%10; //index
+    let mut val_2 = (input_all/100)%10; // middle
+    let mut val_3 = (input_all/10)%10; // ring
+    let mut val_4 = input_all%10; //pinky
     loop {
 
 
