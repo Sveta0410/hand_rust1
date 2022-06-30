@@ -2,3 +2,13 @@
 let st = "0 1";
 let chars : Vec<char> = st.chars().collect();
 println!("{:?}", chars);
+
+
+--------- строка в число -------------
+-(в нашем случае 0 знак -> my_int/10000, 1->(my_int/1000)%10, 2->(my_int/100)%10, 3->(my_int/10)%10, 4->my_int%10)-
+------(это, конечно, костыль какой-то)------
+-------(но всё же лучше, чем ничего)-------
+
+let my_string = "10".to_string();  // `parse()` works with `&str` and `String`!
+let my_int = my_string.parse::<i32>().unwrap();
+println!("{:?}", my_int)
