@@ -13,6 +13,8 @@ fn main() -> ! {
     let pins = arduino_hal::pins!(dp);
 
     let mut servo_pin = pins.d9.into_output();
+    let mut servo_pin1 = pins.d5.into_output();
+
     let mut led = pins.d13.into_output();
 
     let mut val;
@@ -37,5 +39,24 @@ fn main() -> ! {
         }
         arduino_hal::delay_ms(2000);
 
+        val = 180; // angle
+        led.toggle();
+        for _i in 0..50{
+            let pulse_width = (val * 11) + 500;
+            servo_pin1.set_high();
+            arduino_hal::delay_us(pulse_width);
+            servo_pin1.set_low();
+            arduino_hal::delay_us(20000 - pulse_width - 1000);
+        }
+        val = 0;
+        arduino_hal::delay_ms(2000);
+        for _i in (0..50).rev(){
+            let pulse_width = (val * 11) + 500;
+            servo_pin1.set_high();
+            arduino_hal::delay_us(pulse_width);
+            servo_pin1.set_low();
+            arduino_hal::delay_us(20000 - pulse_width - 1000);
+        }
+        arduino_hal::delay_ms(2000);
     }
 }
