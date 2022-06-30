@@ -1,5 +1,8 @@
 #![no_std]
 #![no_main]
+extern crate alloc;
+
+use alloc::string::ToString;
 use core::panic::PanicInfo;
 
 #[panic_handler]
@@ -15,10 +18,18 @@ fn main() -> ! {
     let mut servo_pin = pins.d9.into_output();
     let mut servo_pin1 = pins.d5.into_output();
 
-    let mut led = pins.d13.into_output();
+    let mut led = pins.d13.into_output(); //delete later
 
-    let mut val;
+    let mut val; //we'll delete it later
+
+    let input_all_str = "10100".to_string(); // input from python
+    let input_all = input_all_str.parse::<i32>().unwrap(); // from string to int
+
     loop {
+
+
+
+        // for tests:
         val = 180; // angle
         led.toggle();
         for _i in 0..50{
