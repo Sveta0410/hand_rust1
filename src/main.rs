@@ -44,7 +44,7 @@ fn main() -> ! {
         val = 0;
         arduino_hal::delay_ms(2000);
 
-        for _i in (0..50).rev(){
+        for _i in 0..50 {
             let pulse_width = (val * 11) + 500;
             servo_pin.set_high();
             arduino_hal::delay_us(pulse_width);
@@ -65,7 +65,7 @@ fn main() -> ! {
         val = 0;
         arduino_hal::delay_ms(2000);
 
-        for _i in (0..50).rev(){
+        for _i in 0..50{
             let pulse_width = (val * 11) + 500;
             servo_pin1.set_high();
             arduino_hal::delay_us(pulse_width);
