@@ -1,6 +1,14 @@
 #![no_std]
 #![no_main]
 
+extern crate arduino_hal;
+extern crate avr_hal_generic;
+
+use arduino_hal::prelude::*;
+// use arduino_hal::delay_ms; // to write just delay_ms(100);
+mod servo;
+use servo::ServoMotor;
+
 use core::panic::PanicInfo;
 
 #[panic_handler]
@@ -12,8 +20,9 @@ fn panic(_info: &PanicInfo) -> ! {
 fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
+    let mut servo = ServoMotor::new(pins.d9, 10, dp.TC1);
 
-    let mut servo_pin = pins.d9.into_output();
+    let mut servo_pin = pins.d10.into_output();
     let mut servo_pin1 = pins.d5.into_output();
 
     let mut led = pins.d13.into_output();

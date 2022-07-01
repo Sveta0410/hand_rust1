@@ -11,8 +11,18 @@ panic = "abort"
 
 [dependencies]
 panic-halt = "0.2.0"
+avr-device = "0.3"
 
 [dependencies.arduino-hal]
 git ="https://github.com/Rahix/avr-hal"
 rev = "0fdbc49"
 features = ["arduino-uno"]
+
+[dependencies.avr-hal-generic]
+git = "https://github.com/Rahix/avr-hal"
+rev = "4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+
+[dependencies.atmega-hal]
+git = "https://github.com/Rahix/avr-hal"
+rev = "4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+features = ["atmega328p"]

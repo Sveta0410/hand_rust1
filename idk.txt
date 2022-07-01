@@ -1,3 +1,14 @@
+mismatched types [E0308] expected `Pin<Input<Floating>, PB1>`, found `Pin<Input<Floating>, PB1>
+
+
+
+
+
+
+
+
+
+
 //avrdude -p m328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:hand_rust1.elf
 avrdude -p m328p -c arduino -P /dev/ttyACM0 -b 115200 -U flash:w:rust_hand.elf
 ----

@@ -7,9 +7,9 @@ name = "arduino-hal"
 version = "0.1.0"
 source = "git+https://github.com/Rahix/avr-hal?rev=0fdbc49#0fdbc49714e9128b6cdc27a887b766028e010faf"
 dependencies = [
- "atmega-hal",
+ "atmega-hal 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=0fdbc49)",
  "avr-device",
- "avr-hal-generic",
+ "avr-hal-generic 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=0fdbc49)",
  "cfg-if 1.0.0",
  "embedded-hal",
  "ufmt",
@@ -22,7 +22,16 @@ version = "0.1.0"
 source = "git+https://github.com/Rahix/avr-hal?rev=0fdbc49#0fdbc49714e9128b6cdc27a887b766028e010faf"
 dependencies = [
  "avr-device",
- "avr-hal-generic",
+ "avr-hal-generic 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=0fdbc49)",
+]
+
+[[package]]
+name = "atmega-hal"
+version = "0.1.0"
+source = "git+https://github.com/Rahix/avr-hal?rev=4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1#4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+dependencies = [
+ "avr-device",
+ "avr-hal-generic 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1)",
 ]
 
 [[package]]
@@ -60,6 +69,20 @@ dependencies = [
  "nb 0.1.3",
  "paste",
  "rustversion",
+ "ufmt",
+ "void",
+]
+
+[[package]]
+name = "avr-hal-generic"
+version = "0.1.0"
+source = "git+https://github.com/Rahix/avr-hal?rev=4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1#4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+dependencies = [
+ "avr-device",
+ "cfg-if 0.1.10",
+ "embedded-hal",
+ "nb 0.1.3",
+ "paste",
  "ufmt",
  "void",
 ]
@@ -151,6 +174,9 @@ name = "rust_hand"
 version = "0.1.0"
 dependencies = [
  "arduino-hal",
+ "atmega-hal 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1)",
+ "avr-device",
+ "avr-hal-generic 0.1.0 (git+https://github.com/Rahix/avr-hal?rev=4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1)",
  "panic-halt",
 ]
 
