@@ -1,12 +1,13 @@
 #![no_std]
 #![no_main]
 
-extern crate arduino_hal;
-extern crate avr_hal_generic;
+// extern crate arduino_hal;
+// extern crate avr_hal_generic;
+//
 
-use arduino_hal::prelude::*;
-// use arduino_hal::delay_ms; // to write just delay_ms(100);
+// // use arduino_hal::delay_ms; // to write just delay_ms(100);
 mod servo;
+// use arduino_hal::prelude::*;
 use servo::ServoMotor;
 
 use core::panic::PanicInfo;
@@ -20,8 +21,8 @@ fn panic(_info: &PanicInfo) -> ! {
 fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
-    let mut servo = ServoMotor::new(pins.d9, 10, dp.TC1);
 
+    let servo = ServoMotor::new(pins.d9, dp.TC1);
     let mut servo_pin = pins.d10.into_output();
     let mut servo_pin1 = pins.d5.into_output();
 
@@ -29,6 +30,7 @@ fn main() -> ! {
 
     let mut val;
     loop {
+        // let duty = servo_pin.write_angle(10);
         val = 180; // angle
         led.toggle();
         arduino_hal::delay_ms(2000);

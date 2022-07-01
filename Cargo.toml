@@ -1,6 +1,7 @@
 [package]
 name = "rust_hand"
 version = "0.1.0"
+edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [profile.release]
@@ -15,14 +16,14 @@ avr-device = "0.3"
 
 [dependencies.arduino-hal]
 git ="https://github.com/Rahix/avr-hal"
-rev = "0fdbc49"
+rev = "46fbe4f"
 features = ["arduino-uno"]
 
 [dependencies.avr-hal-generic]
 git = "https://github.com/Rahix/avr-hal"
-rev = "4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+rev = "46fbe4f"
 
 [dependencies.atmega-hal]
 git = "https://github.com/Rahix/avr-hal"
-rev = "4b8a0572e5f6a6928b4ce30e110e5e7219a2a9b1"
+rev = "46fbe4f"
 features = ["atmega328p"]
