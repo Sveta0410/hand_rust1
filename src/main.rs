@@ -1,13 +1,7 @@
 #![no_std]
 #![no_main]
 
-// extern crate arduino_hal;
-// extern crate avr_hal_generic;
-//
-
-// // use arduino_hal::delay_ms; // to write just delay_ms(100);
 mod servo;
-// use arduino_hal::prelude::*;
 use servo::ServoMotor;
 
 use core::panic::PanicInfo;
@@ -42,71 +36,5 @@ fn main() -> ! {
         arduino_hal::delay_ms(2000);
         let work = ServoMotor::write_5(&mut servo_pin1, 0);
         arduino_hal::delay_ms(2000);
-
-
-
-        // angle = 180;
-        // let duty = servo.write_angle(180);
-        // arduino_hal::delay_ms(2000);
-        // angle = 0;
-        // let duty = servo.write_angle(0);
-        // arduino_hal::delay_ms(2000);
-
-
-
-
-
-
-        // let servo_p1 = pins.d9.copy();
-
-        // doesnt work :(
-        // let duty = ServoMotor::write(&ServoMotor {d9}, 100);
-
-
-        // let duty = servo_pin.write_angle(10);
-        // -------------- ниже рабочий код--------
-        // val = 180; // angle
-        // led.toggle();
-        // arduino_hal::delay_ms(2000);
-        // for _i in 0..50{
-        //     let pulse_width = (val * 11) + 500;
-        //     servo_pin.set_high();
-        //     arduino_hal::delay_us(pulse_width);
-        //     servo_pin.set_low();
-        //     arduino_hal::delay_us(20000 - pulse_width);
-        // }
-        // val = 0;
-        // arduino_hal::delay_ms(2000);
-        //
-        // for _i in 0..50 {
-        //     let pulse_width = (val * 11) + 500;
-        //     servo_pin.set_high();
-        //     arduino_hal::delay_us(pulse_width);
-        //     servo_pin.set_low();
-        //     arduino_hal::delay_us(20000 - pulse_width);
-        // }
-        // arduino_hal::delay_ms(2000);
-        //
-        // val = 180; // angle
-        // led.toggle();
-        // for _i in 0..50{
-        //     let pulse_width = (val * 11) + 500;
-        //     servo_pin1.set_high();
-        //     arduino_hal::delay_us(pulse_width);
-        //     servo_pin1.set_low();
-        //     arduino_hal::delay_us(20000 - pulse_width);
-        // }
-        // val = 0;
-        // arduino_hal::delay_ms(2000);
-        //
-        // for _i in 0..50{
-        //     let pulse_width = (val * 11) + 500;
-        //     servo_pin1.set_high();
-        //     arduino_hal::delay_us(pulse_width);
-        //     servo_pin1.set_low();
-        //     arduino_hal::delay_us(20000 - pulse_width);
-        // }
-        // arduino_hal::delay_ms(2000);
-
     }
 }
