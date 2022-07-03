@@ -1,11 +1,8 @@
 use avr_hal_generic::hal::digital::v2::OutputPin;
 
 pub struct ServoMotor{
-    // d9:avr_hal_generic::port::Pin<avr_hal_generic::port::mode::Input<avr_hal_generic::port::mode::Floating>, atmega_hal::port::PB1>,
-
-    tc1: avr_device::atmega328p::TC1,
-    // pin:avr_hal_generic::port::Pin<avr_hal_generic::port::mode::Input<avr_hal_generic::port::mode::Floating>, atmega_hal::port::PB1>,
-    // angle: u32,
+    pin: avr_hal_generic::port::Pin<avr_hal_generic::port::mode::Output, atmega_hal::port::PD5>,
+    angle: u32,
 }
 
 impl ServoMotor{
