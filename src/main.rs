@@ -22,20 +22,29 @@ fn main() -> ! {
     let dp = arduino_hal::Peripherals::take().unwrap();
     let pins = arduino_hal::pins!(dp);
 
-    // let servo = ServoMotor::new(pins.d9, dp.TC1);
     let mut servo_pin = pins.d10.into_output();
+    let start = ServoMotor::write_10(&mut servo_pin, 0);
+
     let mut servo_pin1 = pins.d5.into_output();
-    // let servo_p = pins.d9;
-    let mut led = pins.d13.into_output();
-    // let servo = ServoMotor::new(pins.d9, dp.TC1);
-    // let mut val;
-    let mut angle = 180;
+    let start = ServoMotor::write_5(&mut servo_pin1, 0);
+
+    let mut led = pins.d13.into_output(); // delete later
+
+    let mut val = 180;
+
     loop {
         led.toggle();
-        let work = ServoMotor::aaa(&mut servo_pin, 180);
+        let work = ServoMotor::write_10(&mut servo_pin, 180);
         arduino_hal::delay_ms(2000);
-        let work = ServoMotor::aaa(&mut servo_pin, 0);
+        let work = ServoMotor::write_10(&mut servo_pin, 0);
         arduino_hal::delay_ms(2000);
+        let work = ServoMotor::write_5(&mut servo_pin1, 180);
+        arduino_hal::delay_ms(2000);
+        let work = ServoMotor::write_5(&mut servo_pin1, 0);
+        arduino_hal::delay_ms(2000);
+
+
+
         // angle = 180;
         // let duty = servo.write_angle(180);
         // arduino_hal::delay_ms(2000);
