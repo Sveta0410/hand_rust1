@@ -17,24 +17,24 @@ fn main() -> ! {
     let pins = arduino_hal::pins!(dp);
 
     let mut servo_pin = pins.d10.into_output();
-    let start = ServoMotor::write_10(&mut servo_pin, 0);
+    let _start = ServoMotor::write_10(&mut servo_pin, 0);
 
     let mut servo_pin1 = pins.d5.into_output();
-    let start = ServoMotor::write_5(&mut servo_pin1, 0);
+    let _start = ServoMotor::write_5(&mut servo_pin1, 0);
 
     let mut led = pins.d13.into_output(); // delete later
 
-    let mut val = 180;
+    // let mut val = 180; // use later
 
     loop {
         led.toggle();
-        let work = ServoMotor::write_10(&mut servo_pin, 180);
+        let _work = ServoMotor::write_10(&mut servo_pin, 180);
         arduino_hal::delay_ms(2000);
-        let work = ServoMotor::write_10(&mut servo_pin, 0);
+        let _work = ServoMotor::write_10(&mut servo_pin, 0);
         arduino_hal::delay_ms(2000);
-        let work = ServoMotor::write_5(&mut servo_pin1, 180);
+        let _work = ServoMotor::write_5(&mut servo_pin1, 180);
         arduino_hal::delay_ms(2000);
-        let work = ServoMotor::write_5(&mut servo_pin1, 0);
+        let _work = ServoMotor::write_5(&mut servo_pin1, 0);
         arduino_hal::delay_ms(2000);
     }
 }
