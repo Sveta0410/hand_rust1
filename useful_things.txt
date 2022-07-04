@@ -1,3 +1,99 @@
+https://crates.io/crates/serialport
+
+serialport = "4.2.0"
+----------------Для работы с Serial Port-------------------
+
+extern crate serialport;
+
+#[cfg(unix)]
+fn main() {
+
+    use std::io::{Read, Write};
+    use std::os::unix::prelude::*;
+    use std::str;
+    use std::thread;
+    use std::time;
+
+    use serialport::{SerialPort, TTYPort};
+
+    let (mut master, mut slave) = TTYPort::pair().expect("Unable to create pseudo-terminal pair");
+
+    // Master ptty has no associated path on the filesystem.
+    println!(
+        "Master ptty fd: {}, path: {:?}",
+        master.as_raw_fd(),
+        master.name()
+    );
+    println!(
+        "Slave  ptty fd: {}, path: {:?}",
+        slave.as_raw_fd(),
+        slave.name()
+    );
+
+    // Receive buffer.
+    let mut buf = [0u8; 512];
+
+    println!("Sending 5 messages from master to slave.");
+
+    // Send 5 messages.
+    for x in 1..6 {
+        let msg = format!("Message #{}", x);
+
+        // Send the message on the master
+        assert_eq!(master.write(msg.as_bytes()).unwrap(), msg.len());
+
+        // Receive on the slave
+        let bytes_recvd = slave.read(&mut buf).unwrap();
+        assert_eq!(bytes_recvd, msg.len());
+
+        let msg_recvd = str::from_utf8(&buf[..bytes_recvd]).unwrap();
+        assert_eq!(msg_recvd, msg);
+
+        println!("Slave Rx:  {}", msg_recvd);
+        thread::sleep(time::Duration::from_secs(1));
+    }
+}
+
+#[cfg(not(unix))]
+fn main() {}
+
+
+---------------------------
+
+extern crate serialport;
+
+use std::time::Duration;
+use serialport::*;
+// use ufmt::{derive::uDebug, uwrite};
+fn main() {
+    println!("{:?}", 0);
+    let ports = serialport::available_ports().expect("No ports found!");
+    for p in ports {
+      println!("{}", p.port_name);
+    }
+    // let mut port = serialport::new("/dev/ttyUSB0", 115_200)
+    //  .timeout(Duration::from_millis(10))
+    //  .open().expect("Failed to open port");
+    let mut port = serialport::new("/dev/ttyS4", 115_200)
+     .timeout(Duration::from_millis(10000))
+     .open().expect("Failed to open port");
+    let output = "This is a test. This is only a test.".as_bytes();
+    port.write(output).expect("Write failed!");
+    let mut serial_buf: Vec<u8> = vec![0; 10000];
+    let a = port.read(serial_buf.as_mut_slice()).expect("Found no data!");
+    // println!("{:?}", a);
+    println!("{:?}", 10);
+    // let mut serial = arduino_hal::default_serial!(dp, pins, 57600);
+    // loop {
+    //     // Read a byte from the serial connection
+    //     let b = nb::block!(serial.read()).void_unwrap();
+    //
+    //     // Answer
+    //     ufmt::uwriteln!(&mut serial, "Got {}!\r", b).void_unwrap();
+    // }
+}
+
+
  -------- преобразование строки в вектор(изменяемый массив) ---------
 let st = "0 1";
 let chars : Vec<char> = st.chars().collect();
