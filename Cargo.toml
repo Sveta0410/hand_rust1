@@ -11,6 +11,9 @@ panic = "abort"
 panic = "abort"
 
 [dependencies]
+ufmt = "0.1.0"
+nb = "0.1.2"
+embedded-hal = "0.2.3"
 panic-halt = "0.2.0"
 avr-device = "0.3"
 
