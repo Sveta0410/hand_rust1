@@ -26,11 +26,19 @@ fn main() -> ! {
     let _start = ServoMotor::write_5(&mut servo_pin1, 0);
 
     let mut led = pins.d13.into_output(); // delete later
-    let b:u32 = nb::block!(serial.read()).void_unwrap().into();
+    let b = 1;
 
     loop {
+        let b:u32 = nb::block!(serial.read()).void_unwrap().into();
         led.toggle();
-        let _work = ServoMotor::write_10(&mut servo_pin, 180);
+        if b % 10 == 1{
+            let _work = ServoMotor::write_10(&mut servo_pin, 90);
+            arduino_hal::delay_ms(3000);
+            let _work = ServoMotor::write_10(&mut servo_pin, 180);
+        } else{
+            let _work = ServoMotor::write_10(&mut servo_pin, 180);
+        }
+        // let _work = ServoMotor::write_10(&mut servo_pin, 180);
         arduino_hal::delay_ms(2000);
         let _work = ServoMotor::write_10(&mut servo_pin, 0);
         arduino_hal::delay_ms(2000);
