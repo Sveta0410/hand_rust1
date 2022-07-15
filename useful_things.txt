@@ -1,3 +1,11 @@
+cargo run --release!!!!!!!!
+
+rustup override set nightly-2021-01-07
+
+ cargo -V
+cargo 1.50.0-nightly (75d5d8cff 2020-12-22)
+
+
 https://crates.io/crates/serialport
 
 serialport = "4.2.0"
