@@ -1,3 +1,6 @@
+we send "1", get "$1" BUT in ASCII (36 and 49)
+
+----------
 to install ravedude use stable version(not nightly)
 
 rustup override set stable
