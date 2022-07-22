@@ -1,3 +1,42 @@
+если в коде ниже менять показание counter (в if + после него(чтобы каждый раз круг проходил)),
+можно заметить, что вся информация нормально приходит для каждого пальца
+
+возможно дело в том, что вывод информации на экран замедляет код, что приводит к ошибкам
+
+(пробовала сделать задержку при чтении с порта, выводится непонятно что -> дело скорее всего в задержке)
+
+
+#![no_std]
+#![no_main]
+
+use arduino_hal::prelude::*;
+use panic_halt as _;
+
+use embedded_hal::serial::Read;
+
+#[arduino_hal::entry]
+fn main() -> ! {
+    let dp = arduino_hal::Peripherals::take().unwrap();
+    let pins = arduino_hal::pins!(dp);
+    let mut serial = arduino_hal::default_serial!(dp, pins, 57600);
+    let mut info:u32 = 0;
+    ufmt::uwriteln!(&mut serial, "Hello from Arduino!\r").void_unwrap();
+    let mut counter = 0;
+
+    loop {
+        // Read a byte from the serial connection
+        let b = nb::block!(serial.read()).void_unwrap();
+        counter +=1;
+
+        if counter == 3{
+            ufmt::uwriteln!(&mut serial, "Got {}!\r", b).void_unwrap();
+            counter = -3;
+        }
+        // Answer
+
+    }
+}
+-----
 разделять информацию и присылать каждый палец отдельно (или формировать меньшие массивы) не помогает
 
 всё работает нормально, только если в массиве 3 элемента или меньше
